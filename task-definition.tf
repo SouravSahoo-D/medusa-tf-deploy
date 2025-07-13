@@ -8,8 +8,8 @@ resource "aws_ecs_task_definition" "medusa_task" {
 
   container_definitions = jsonencode([
     {
-      name      = "medusa"
-      image     = "${aws_ecr_repository.medusa_ecr.repository_url}:latest"
+      name  = "medusa"
+      image = "${aws_ecr_repository.medusa_ecr.repository_url}:latest"
       portMappings = [
         {
           containerPort = 9000
@@ -19,20 +19,20 @@ resource "aws_ecs_task_definition" "medusa_task" {
       environment = [
         {
           name  = "DATABASE_URL"
-          value = "postgres://postgres:postgres@localhost:5432/medusa"
+          value = "postgres://postgres:postgres@postgres:5432/medusa"
         },
         {
           name  = "REDIS_URL"
-          value = "redis://localhost:6379"
+          value = "redis://redis:6379"
         }
       ],
       essential = true
     },
     {
-      name  = "postgres"
-      image = "postgres:15-alpine",
+      name              = "postgres"
+      image             = "postgres:15-alpine",
       memoryReservation = 512,
-      memory = 1024
+      memory            = 1024
       portMappings = [
         {
           containerPort = 5432
@@ -56,10 +56,10 @@ resource "aws_ecs_task_definition" "medusa_task" {
       essential = true
     },
     {
-      name  = "redis"
-      image = "valkey/valkey:7.2-alpine",
+      name              = "redis"
+      image             = "valkey/valkey:7.2-alpine",
       memoryReservation = 512,
-      memory = 1024
+      memory            = 1024
       portMappings = [
         {
           containerPort = 6379
