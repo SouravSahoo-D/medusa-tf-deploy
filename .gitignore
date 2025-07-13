@@ -1,29 +1,22 @@
-# Terraform state
 *.tfstate
 *.tfstate.backup
 .terraform/
 
-# Terraform lock files (can include these if you're working alone, but safer to ignore)
 .terraform.lock.hcl
 
-# Crash logs
 crash.log
 
-# Sensitive files (if any)
 *.pem
 *.key
 *.env
 
-# VSCode/Editor
 .vscode/
 *.swp
 *~
 
-# OS generated files
 .DS_Store
 Thumbs.db
 
-# Docker build cache (optional, if building locally)
 **/__pycache__/
 docker/*.pyc
 docker/*.pyo
